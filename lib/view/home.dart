@@ -38,10 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
           return false;
         },
         child: PageView.builder(
+          scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             getNews();
-            scrollDirection:
-            Axis.vertical;
 
             return NewsContainer(
               newsDes: newsArticle.newsDes,
