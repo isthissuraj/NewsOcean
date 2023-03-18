@@ -32,14 +32,14 @@ class NewsContainer extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 15),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               newsHead,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
@@ -48,7 +48,7 @@ class NewsContainer extends StatelessWidget {
             ),
           ]),
         ),
-        Spacer(),
+        const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -62,7 +62,7 @@ class NewsContainer extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ]),
