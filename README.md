@@ -6,7 +6,7 @@ A new Flutter project.
 
 Short News app 
 
-- It Will random short news
+- It Will show random short news
   - Headlines 
   - Description
   - Image
