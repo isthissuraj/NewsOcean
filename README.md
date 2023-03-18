@@ -1,6 +1,15 @@
 # newsapp
 
+* Under Production
+
 A new Flutter project.
+
+Short News app 
+
+- It Will random short news
+  - Headlines 
+  - Description
+  - Image
 
 ## Getting Started
 
