@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:http/http.dart';
 import 'package:newsapp/controller/fetchnews.dart';
+import 'package:newsapp/model/newsArticle.dart';
 import 'package:newsapp/view/widgets/news_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,30 +13,67 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late NewsArticle newsArticle;
+  bool _userScrolling = false;
+
+  getNews() async {
+    newsArticle = await FetchNews.fetchNews();
+    setState(() {});
+  }
+
   @override
   void initState() {
-    FetchNews.fetchNews();
+    getNews();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-          controller: PageController(initialPage: 0),
-          scrollDirection: Axis.vertical,
-          itemCount: 10,
+      body: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          if (notification is UserScrollNotification) {
+            _userScrolling = true;
+          }
+          return false;
+        },
+        child: PageView.builder(
           itemBuilder: (context, index) {
+            getNews();
+            scrollDirection:
+            Axis.vertical;
+
             return NewsContainer(
-                imgUrl:
-                    "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA18Ju0h.img?w=1920&h=1080&q=60&m=2&f=jpg",
-                newsHead:
-                    "Microsoft Announces AI-Powered 'Copilot' for Word, Excel, Outlook, Teams And More; What It Means For Users",
-                newsDes:
-                    "The tech giant based in Redmond, Washington, will also add a chat function called Business Chat, which resembles the popular ChatGPT. It takes commands and carries out actions like summarizing an email about a particular project to co-workers using user data ",
-                newsUrl:
-                    "https://www.msn.com/en-in/money/news/microsoft-announces-ai-powered-copilot-for-word-excel-outlook-teams-and-more-what-it-means-for-users/ar-AA18Jd5o?cvid=051c90afc6fb4d038dc0ae08281529ed&ei=7#image=1");
-          }),
+              newsDes: newsArticle.newsDes,
+              imgUrl: newsArticle.imgUrl,
+              newsHead: newsArticle.newsHead,
+              newsCnt: newsArticle.newsCnt,
+              newsUrl: newsArticle.newsUrl,
+            );
+          },
+          onPageChanged: (index) {
+            if (!_userScrolling) {
+              // Handle automatic scrolling here
+            }
+            _userScrolling = false;
+          },
+        ),
+      ),
+
+      // body: PageView.builder(
+      //     controller: PageController(initialPage: 0),
+      //     scrollDirection: Axis.vertical,
+      //     itemBuilder: (context, index) {
+      //       getNews();
+
+      //       return NewsContainer(
+      //         newsDes: newsArticle.newsDes,
+      //         imgUrl: newsArticle.imgUrl,
+      //         newsHead: newsArticle.newsHead,
+      //         newsCnt: newsArticle.newsCnt,
+      //         newsUrl: newsArticle.newsUrl,
+      //       );
+      //     }),
     );
   }
 }

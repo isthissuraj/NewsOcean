@@ -6,12 +6,14 @@ class NewsContainer extends StatelessWidget {
   String imgUrl;
   String newsHead;
   String newsDes;
+  String newsCnt;
   String newsUrl;
 
   NewsContainer(
       {super.key,
       required this.imgUrl,
       required this.newsHead,
+      required this.newsCnt,
       required this.newsDes,
       required this.newsUrl});
 
@@ -22,11 +24,17 @@ class NewsContainer extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Image.network(
-          imgUrl,
-          height: 350,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+          ),
+          child: Image.network(
+            imgUrl,
+            height: 350,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -44,6 +52,13 @@ class NewsContainer extends StatelessWidget {
             ),
             Text(
               newsDes,
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              newsCnt,
               style: TextStyle(fontSize: 16),
             ),
           ]),
