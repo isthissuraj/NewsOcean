@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late NewsArticle newsArticle;
-  bool _userScrolling = false;
 
   getNews() async {
     newsArticle = await FetchNews.fetchNews();
@@ -30,18 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NotificationListener<ScrollNotification>(
-        onNotification: (notification) {
-          if (notification is UserScrollNotification) {
-            _userScrolling = true;
-          }
-          return false;
-        },
-        child: PageView.builder(
+      body: PageView.builder(
+          controller: PageController(initialPage: 0),
           scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
+          onPageChanged: (value) {
             getNews();
-
+          },
+          itemBuilder: (context, index) {
             return NewsContainer(
               newsDes: newsArticle.newsDes,
               imgUrl: newsArticle.imgUrl,
@@ -49,30 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               newsCnt: newsArticle.newsCnt,
               newsUrl: newsArticle.newsUrl,
             );
-          },
-          onPageChanged: (index) {
-            if (!_userScrolling) {
-              // Handle automatic scrolling here
-            }
-            _userScrolling = false;
-          },
-        ),
-      ),
-
-      // body: PageView.builder(
-      //     controller: PageController(initialPage: 0),
-      //     scrollDirection: Axis.vertical,
-      //     itemBuilder: (context, index) {
-      //       getNews();
-
-      //       return NewsContainer(
-      //         newsDes: newsArticle.newsDes,
-      //         imgUrl: newsArticle.imgUrl,
-      //         newsHead: newsArticle.newsHead,
-      //         newsCnt: newsArticle.newsCnt,
-      //         newsUrl: newsArticle.newsUrl,
-      //       );
-      //     }),
+          }),
     );
   }
 }

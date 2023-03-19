@@ -55,6 +55,6 @@ class FetchNews {
     print(randomArticles);
     print("###########################################################");
 
-    return NewsArticle.FromApiToApp(randomArticles);
+    return NewsArticle.fromApiToApp(randomArticles);
   }
 }

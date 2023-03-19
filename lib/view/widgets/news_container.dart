@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NewsContainer extends StatelessWidget {
   String imgUrl;
   String newsHead;
@@ -19,7 +20,7 @@ class NewsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       //mainaxisallignment is vertical y axis in column and crossaxisalignment is horizontal x axis and opposit in row
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -37,7 +38,7 @@ class NewsContainer extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(
@@ -45,21 +46,21 @@ class NewsContainer extends StatelessWidget {
             ),
             Text(
               newsHead,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
               newsDes,
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
               newsCnt,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ]),
         ),
@@ -70,10 +71,12 @@ class NewsContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(0, 221, 9, 90)),
                   onPressed: () {
-                    print("going to $newsUrl");
+                    print("clicked $newsUrl");
                   },
-                  child: Text("Read mode")),
+                  child: const Text("Read mode")),
             ),
           ],
         ),
