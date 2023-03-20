@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:newsapp/view/widgets/detail_web_view.dart';
 
 // ignore: must_be_immutable
 class NewsContainer extends StatelessWidget {
@@ -32,7 +33,7 @@ class NewsContainer extends StatelessWidget {
           ),
           child: Image.network(
             imgUrl,
-            height: 350,
+            height: 300,
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
@@ -45,8 +46,10 @@ class NewsContainer extends StatelessWidget {
               height: 10,
             ),
             Text(
-              newsHead,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              newsHead.length > 80
+                  ? "${newsHead.substring(0, 80)}..."
+                  : newsHead,
+              style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 10,
@@ -59,7 +62,9 @@ class NewsContainer extends StatelessWidget {
               height: 10,
             ),
             Text(
-              newsCnt,
+              newsCnt.length > 210
+                  ? "${newsCnt.substring(0, newsCnt.length - 14)}...."
+                  : newsCnt,
               style: const TextStyle(fontSize: 16),
             ),
           ]),
@@ -72,9 +77,13 @@ class NewsContainer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(0, 221, 9, 90)),
+                      backgroundColor: Color.fromARGB(0, 196, 193, 194)),
                   onPressed: () {
-                    print("clicked $newsUrl");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DetailWebView(newsURL: newsUrl)));
                   },
                   child: const Text("Read mode")),
             ),
