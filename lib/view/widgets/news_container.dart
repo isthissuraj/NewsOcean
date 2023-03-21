@@ -72,7 +72,7 @@ class NewsContainer extends StatelessWidget {
               newsCnt.length > 210
                   ? "${newsCnt.substring(0, newsCnt.length - 14)}...."
                   : newsCnt,
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 15),
             ),
           ]),
         ),
@@ -84,7 +84,7 @@ class NewsContainer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(0, 196, 193, 194)),
+                      backgroundColor: Colors.deepPurple),
                   onPressed: () {
                     Navigator.push(
                         context,
