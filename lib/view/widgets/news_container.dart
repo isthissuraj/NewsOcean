@@ -27,17 +27,24 @@ class NewsContainer extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         ClipRRect(
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-          child: Image.network(
-            imgUrl,
-            height: 300,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-          ),
-        ),
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+            child: FadeInImage.assetNetwork(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+                placeholder: "asset/Logo.png",
+                image: imgUrl)
+
+            //Image.network(
+            //   imgUrl,
+            //   height: 300,
+            //   width: MediaQuery.of(context).size.width,
+            //   fit: BoxFit.cover,
+            // ),
+            ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child:

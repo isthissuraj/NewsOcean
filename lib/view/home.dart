@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:http/http.dart';
 import 'package:newsapp/controller/fetchnews.dart';
 import 'package:newsapp/model/newsArticle.dart';
 import 'package:newsapp/view/widgets/news_container.dart';
@@ -13,11 +11,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = true;
+
   late NewsArticle newsArticle;
 
   getNews() async {
     newsArticle = await FetchNews.fetchNews();
-    setState(() {});
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -37,16 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: PageController(initialPage: 0),
           scrollDirection: Axis.vertical,
           onPageChanged: (value) {
+            setState(() {
+              isLoading = true;
+            });
             getNews();
           },
           itemBuilder: (context, index) {
-            return NewsContainer(
-              newsDes: newsArticle.newsDes,
-              imgUrl: newsArticle.imgUrl,
-              newsHead: newsArticle.newsHead,
-              newsCnt: newsArticle.newsCnt,
-              newsUrl: newsArticle.newsUrl,
-            );
+            return isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : NewsContainer(
+                    newsDes: newsArticle.newsDes,
+                    imgUrl: newsArticle.imgUrl,
+                    newsHead: newsArticle.newsHead,
+                    newsCnt: newsArticle.newsCnt,
+                    newsUrl: newsArticle.newsUrl,
+                  );
           }),
     );
   }
