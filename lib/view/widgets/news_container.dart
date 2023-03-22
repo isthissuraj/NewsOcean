@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:newsapp/view/widgets/detail_web_view.dart';
 
