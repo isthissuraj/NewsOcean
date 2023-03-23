@@ -1,15 +1,15 @@
 # newsapp
 
-* Under Production
-
 A new Flutter project.
 
 Short News app 
 
 - It Will show random short news
+
   - Headlines 
   - Description
   - Image
+  - to read more form the news you can press read more button ( webView implemented )
 
 ## Getting Started
 
