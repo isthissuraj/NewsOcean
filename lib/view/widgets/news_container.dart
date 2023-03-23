@@ -82,7 +82,10 @@ class NewsContainer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple),
+                      backgroundColor: Colors.deepPurple,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      )),
                   onPressed: () {
                     Navigator.push(
                         context,
