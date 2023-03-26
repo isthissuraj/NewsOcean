@@ -49,7 +49,7 @@ class FetchNews {
     Map body_data = jsonDecode(response.body);
     List articles = body_data["articles"];
     //print(articles);
-    print("###########################################################");
+    print("##########################################################");
     final newRandom = Random();
     var randomArticles = articles[newRandom.nextInt(articles.length)];
     print(randomArticles);
