@@ -14,6 +14,9 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
 
   late NewsArticle newsArticle;
+  
+  //which provides change notification to its listeners.
+  final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
 
   getNews() async {
     newsArticle = await FetchNews.fetchNews();
@@ -30,10 +33,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    // ValueListenable listens to it and updates the UI
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: _notifier,
+      builder: (_, mode, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: mode,
+          home: Scaffold(
+        appBar: AppBar(
+           actions: [
+                IconButton(
+                    onPressed: () => _notifier.value = mode == ThemeMode.light
+                        ? ThemeMode.dark
+                        : ThemeMode.light,
+                    icon: const Icon(Icons.lightbulb))
+              ],
         title: const Text("News Ocean"),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.deepPurpleAccent.shade200,
       ),
       body: PageView.builder(
           controller: PageController(initialPage: 0),
@@ -47,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             return isLoading
                 ? const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                     color: Colors.deepPurpleAccent,
+                    ),
                   )
                 : NewsContainer(
                     newsDes: newsArticle.newsDes,
@@ -58,5 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
           }),
     );
+   });
   }
 }
