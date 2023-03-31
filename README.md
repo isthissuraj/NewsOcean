@@ -1,25 +1,31 @@
 # newsapp
 
-A new Flutter project.
+Short News App is an app which is created using flutter and used news api. It will show random short news.
 
-Short News app 
 
-- It Will show random short news
+## Features
 
-  - Headlines 
-  - Description
-  - Image
-  - to read more form the news you can press read more button ( webView implemented )
+- Headlines 
+- Description
+- Images
+- Read More buttom (WebView Implemented)
+- Light and Dark Mode
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Dependencies
 
-A few resources to get you started if this is your first Flutter project:
+- http: ^0.13.5
+- hive_flutter: ^1.1.0
+- webview_flutter: ^3.0.4
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Prerequisites
+
+- Flutter SDK
+- News API [Available Here](https://newsapi.org/)
+
+
+### Development by
+
+- NewsAPI - https://newsapi.org/
+- Flutter - https://flutter.dev/
