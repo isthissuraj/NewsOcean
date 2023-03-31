@@ -15,9 +15,6 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
 
   late NewsArticle newsArticle;
-  
-  //which provides change notification to its listeners.
-  final ValueNotifier<ThemeMode> _notifier = ValueNotifier(ThemeMode.light);
 
   getNews() async {
     newsArticle = await FetchNews.fetchNews();
