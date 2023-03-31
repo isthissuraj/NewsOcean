@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/controller/fetchnews.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newsapp/model/newsArticle.dart';
 import 'package:newsapp/view/widgets/news_container.dart';
 
@@ -33,23 +34,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // ValueListenable listens to it and updates the UI
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: _notifier,
-      builder: (_, mode, __) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
-          themeMode: mode,
-          home: Scaffold(
+    //to update the UI without using setState()
+    return ValueListenableBuilder(
+      //whenever something will be changed inside the box it will listen to it
+      valueListenable: Hive.box("ThemeBox").listenable(),
+      //if something has been changed in valuelistenable then it will re-build or it will call the builder again
+      builder: (context, box, child) {
+        //saving the value inside the hive box,
+        final isDark = box.get('isDark', defaultValue: false);
+        return Scaffold(
         appBar: AppBar(
            actions: [
-                IconButton(
-                    onPressed: () => _notifier.value = mode == ThemeMode.light
-                        ? ThemeMode.dark
-                        : ThemeMode.light,
-                    icon: const Icon(Icons.lightbulb))
+             //it is a toggle switch
+             Switch(
+                value: isDark,
+                onChanged: (val) {
+                  box.put('isDark', val);
+                },
+              ),
               ],
         title: const Text("News Ocean"),
         backgroundColor: Colors.deepPurpleAccent.shade200,
