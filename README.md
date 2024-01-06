@@ -11,6 +11,9 @@ Short News App is an app which is created using flutter and used news api. It wi
 - Read More buttom (WebView Implemented)
 - Light and Dark Mode
 
+## Screenshots
+
+<img width ="650" src ="https://github.com/isthissuraj/NewsApp/assets/112235622/11d31ca2-558c-4bfc-8754-98e94cdb73b3"/>
 
 ## Dependencies
 
