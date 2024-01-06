@@ -93,7 +93,10 @@ class NewsContainer extends StatelessWidget {
                             builder: (context) =>
                                 DetailWebView(newsURL: newsUrl)));
                   },
-                  child: const Text("Read mode")),
+                  child: const Text(
+                    "Read mode",
+                    style: TextStyle(color: Colors.black),
+                  )),
             ),
           ],
         ),

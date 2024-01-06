@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'dart:math';
-
+import 'package:newsapp/api/api_key.dart';
 import 'package:http/http.dart';
 import 'package:newsapp/model/newsArticle.dart';
 
@@ -41,10 +41,9 @@ class FetchNews {
     final random = Random();
     var sourcesID = sourcesId[random.nextInt(sourcesId
         .length)]; // selecting random source form the list using random() from dart math
-    print(sourcesID);
 
     Response response = await get(Uri.parse(
-        "https://newsapi.org/v2/top-headlines?sources=$sourcesID&apiKey=YourApiKey"));
+        "https://newsapi.org/v2/top-headlines?sources=$sourcesID&apiKey=$MyApiKey"));
 
     Map body_data = jsonDecode(response.body);
     List articles = body_data["articles"];
