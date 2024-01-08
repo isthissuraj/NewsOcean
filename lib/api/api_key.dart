@@ -1,1 +1,1 @@
-final MyApiKey = 'YourApiFromNewsapi.org';
+final MyApiKey = 'YourApiKeyFromNewsapi.org';
