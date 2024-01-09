@@ -1,4 +1,4 @@
-# newsapp
+# NewsOcean
 
 Short News App is an app which is created using flutter and used news api. It will show random short news.
 
