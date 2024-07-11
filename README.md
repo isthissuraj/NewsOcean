@@ -3,7 +3,7 @@
 Short News App is an app which is created using flutter and used news api. It will show random short news.
 
 
-## Features
+## Features 
 
 - Headlines 
 - Description
@@ -13,7 +13,7 @@ Short News App is an app which is created using flutter and used news api. It wi
 
 ## Screenshots
 
-<img width ="650" src ="https://github.com/isthissuraj/NewsApp/assets/112235622/11d31ca2-558c-4bfc-8754-98e94cdb73b3"/>
+<img width ="700" src ="https://github.com/isthissuraj/NewsApp/assets/112235622/11d31ca2-558c-4bfc-8754-98e94cdb73b3"/>
 
 ## Dependencies
 
