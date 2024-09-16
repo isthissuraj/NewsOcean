@@ -1,13 +1,11 @@
-// in mvc architecture (model view and controler)
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:newsapp/view/home.dart';
 import 'package:newsapp/view/splash.dart';
 
 void main() async {
-  //initialling the hive in void main 
   await Hive.initFlutter();
-  //then open a box (THE STORE BOX NAME IN VARIABLE ONLY) where you have store the data
   await Hive.openBox('ThemeBox');
   runApp(const MyApp());
 }
